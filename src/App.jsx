@@ -29,6 +29,7 @@ function App() {
         (error) => {
           setLatitude('43.70');
           setLongitude('-79.42');
+          console.log(position);
           console.log(error.message);
         }
       );
@@ -83,15 +84,19 @@ function App() {
         <div className={`container ${isDay ? 'day-background' : 'night'}`}>
           <div className="data-container">
             <Search getCoords={getCoords} />
-            <Today
-              {...data}
-              setUnits={setUnits}
-              tempUnits={tempUnits}
-              setDays={setDays}
-              days={days}
-              coords={coords}
-            />
-            <Days data={data} />
+            {coords.results && (
+              <>
+                <Today
+                  {...data}
+                  setUnits={setUnits}
+                  tempUnits={tempUnits}
+                  setDays={setDays}
+                  days={days}
+                  coords={coords}
+                />
+                <Days data={data} />
+              </>
+            )}
           </div>
         </div>
       )}
