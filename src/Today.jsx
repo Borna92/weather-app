@@ -15,7 +15,11 @@ function Today({
 
   return (
     <div className="today-display">
-      <h2>{coords.results ? coords.results[0].name : timezone}</h2>
+      <h2>
+        {coords.results
+          ? `${coords.results[0].name}, ${coords.results[0].admin1}, ${coords.results[0].country}`
+          : timezone}
+      </h2>
       <div className="temperature">
         <h1>{current_weather.temperature.toFixed(0)}</h1>
         <button
